@@ -1,0 +1,53 @@
+@media(min-width: 64rem) {
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        font-size: .9rem;
+    }
+
+    main {
+        flex-direction: row;
+        max-height: 27rem;
+        max-width: fit-content;
+        border-radius: 1.4rem;
+    }
+
+    .custom-value {
+        padding-inline-start: 0;
+    }
+
+    .bill-options {
+        max-width: 24rem;
+        padding: .5rem;
+    }
+
+    .tip-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+        margin-block: .6rem;
+
+    }
+
+    .tip-result {
+        justify-content: space-between;
+        padding: 2.2rem;
+        min-width: 23rem;
+    }
+
+    .per-person-block {
+        gap: 1.3rem;
+    }
+
+    .per-person {
+        display: flex;
+        align-items: center;
+    }
+
+    .per-person>span {
+        font-size: 2.6rem;
+    }
+}

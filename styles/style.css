@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+
+:root {
+    --green400: hsl(172, 67%, 45%);
+
+    --green900: hsl(183, 100%, 15%);
+    --grey500: hsl(186, 14%, 43%);
+    --grey400: hsl(184, 14%, 56%);
+    --grey200: hsl(185, 41%, 84%);
+    --grey50: hsl(189, 47%, 97%);
+    --white: hsl(0, 100%, 100%);
+
+    --error-red: hsla(9, 75%, 50%, 0.89);
+}
+
+body {
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--grey500);
+    background-color: var(--grey200);
+}
+
+.title-div {
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.4rem;
+    letter-spacing: .5rem;
+    text-align: center;
+}
+
+main {
+    background-color: var(--white);
+    height: 100vh;
+    border-radius: 1.4rem 1.4rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.9rem;
+}
+
+main>div {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.bill-options>div {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-inline: .5rem;
+}
+
+div>input {
+    height: 2.8rem;
+    border: none;
+    border-radius: .3rem;
+}
+
+.custom-value,
+.tip-result>input,
+.tip-buttons>input {
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+}
+
+.custom-value,
+.tip-buttons>input {
+    font-size: 1.4rem;
+}
+
+.custom-value {
+    background-color: var(--grey50);
+    color: var(--green900);
+    text-align: right;
+    padding-inline: 1rem;
+}
+
+.bill,
+.people {
+    background-repeat: no-repeat;
+    background-position: 1rem center;
+}
+
+.bill::placeholder,
+.people::placeholder {
+    color: var(--grey400);
+}
+
+.bill {
+    background-image: url("/images/icon-dollar.svg");
+}
+
+.people {
+    background-image: url("/images/icon-person.svg");
+}
+
+.tip {
+    margin-block: 1rem;
+}
+
+.tip-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-block: .5rem;
+
+}
+
+.tip-buttons>input {
+    min-width: 1rem;
+}
+
+.tip-buttons .fixed-value {
+    transition: .2s ease-in-out;
+}
+
+.tip-buttons>input:hover:not(.custom-value) {
+    background-color: var(--green400);
+    color: var(--green900);
+}
+
+input:not(.custom-value) {
+    cursor: pointer;
+    color: var(--white);
+}
+
+#custom::placeholder {
+    color: var(--grey500);
+}
+
+.fixed-value,
+.tip-result {
+    background-color: var(--green900);
+}
+
+.tip-result {
+    padding: 1.3rem;
+    border-radius: .8rem;
+    gap: 1.5rem;
+}
+
+.tip-result>input {
+    background-color: var(--green400);
+    color: var(--green900);
+    font-size: 1.2rem;
+    transition: .2s ease-in-out;
+}
+
+.tip-result>input:hover {
+    background-color: var(--grey200);
+}
+
+.per-person-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+.per-person {
+    display: flex;
+    justify-content: space-between;
+}
+
+.per-person>span {
+    font-size: 2rem;
+    color: var(--green400);
+}
+
+.per-person>div>p {
+    color: var(--white);
+}
+
+.per-person>div>span {
+    font-size: .8rem;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    input {
+        transition: none;
+    }
+}
+
+.message {
+    display: flex;
+    justify-content: space-between;
+}
+
+.active {
+    border: 0.125rem solid var(--green400);
+}
+
+.error {
+    border: 0.125rem solid var(--error-red);
+}
+
+.error-message-bill,
+.error-message-people {
+    display: none;
+    color: var(--error-red);
+    text-align: right;
+}
+
+.selected {
+    background-color: var(--green400);
+}
