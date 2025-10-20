@@ -12,7 +12,7 @@ let tip = 0;
 let people = 0;
 
 billInput.addEventListener('input', (e) => {
-    bill = e.target.value;
+    bill = parseInt(e.target.value);
     billSpliter(bill, tip, people);
 
     if (bill === '') {
@@ -33,7 +33,7 @@ billInput.addEventListener('input', (e) => {
 });
 
 customInput.addEventListener('input', (e) => {
-    tip = e.target.value;
+    tip = parseInt(e.target.value);
     billSpliter(bill, tip, people);
 
     tipButtons.forEach(btn => btn.classList.remove('selected'));
@@ -53,9 +53,9 @@ customInput.addEventListener('input', (e) => {
 });
 
 peopleInput.addEventListener('input', (e) => {
-    people = e.target.value;
+    people = parseInt(e.target.value);
     billSpliter(bill, tip, people);
-
+    
     if (people === '') {
         peopleInput.classList.remove('error');
         peopleInput.classList.remove('active');
@@ -100,25 +100,26 @@ resetButton.addEventListener('click', () => {
 });
 
 tipButtons.forEach(button => button.addEventListener('click', () => {
-    tip = button.dataset.tip;
+    tip = parseInt(button.dataset.tip);
     billSpliter(bill, tip, people);
     customInput.value = '';
     customInput.classList.remove('error');
     customInput.classList.remove('active');
     customInput.style.outline = 'none';
-
+    
     tipButtons.forEach(btn => btn.classList.remove('selected'));
     button.classList.add('selected');
-
+    
 }));
 
-function billSpliter(bill, tip, people) {
-    if (bill < 1 || tip < 1 || people < 1) {
+function billSpliter(billValue, tipValue, peopleValue) {
+    if (billValue < 1 || tipValue < 1 || peopleValue < 1) {
         totalAmount.innerText = "$0.00"
         tipAmount.innerText = "$0.00"
     } else {
-        totalAmount.innerText = `$${(bill / people).toFixed(2)}`
+        console.log((bill / people) + tip)
         tipAmount.innerText = `$${((tip * bill / 100) / people).toFixed(2)}`
+        totalAmount.innerText = `$${(bill / people + (tip / people)).toFixed(2)}`
 
     }
 }
