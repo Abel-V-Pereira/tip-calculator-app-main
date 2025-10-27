@@ -7,12 +7,12 @@ const tipAmount = document.getElementById('tip-amount');
 const totalAmount = document.getElementById('total-amount');
 const errorMessageBill = document.querySelector('.error-message-bill');
 const errorMessagePeople = document.querySelector('.error-message-people');
-let bill = 0;
-let tip = 0;
-let people = 0;
+let bill;
+let tip;
+let people;
 
 billInput.addEventListener('input', (e) => {
-    bill = parseInt(e.target.value);
+    bill = e.target.value;
     billSpliter(bill, tip, people);
 
     if (bill === '') {
@@ -33,29 +33,27 @@ billInput.addEventListener('input', (e) => {
 });
 
 customInput.addEventListener('input', (e) => {
-    tip = parseInt(e.target.value);
+    tip = e.target.value;
     billSpliter(bill, tip, people);
 
     tipButtons.forEach(btn => btn.classList.remove('selected'));
 
     if (tip === '') {
-        customInput.classList.remove('error');
+        cleanSplitter()
         customInput.classList.remove('active');
-    } else if (tip > 0) {
-        customInput.classList.remove('error');
+    } else if (tip >= 0) {
         customInput.classList.add('active');
         customInput.style.outline = 'none';
     } else {
-        customInput.classList.add('error');
         customInput.classList.remove('active');
         customInput.style.outline = 'none';
     }
 });
 
 peopleInput.addEventListener('input', (e) => {
-    people = parseInt(e.target.value);
+    people = e.target.value;
     billSpliter(bill, tip, people);
-    
+
     if (people === '') {
         peopleInput.classList.remove('error');
         peopleInput.classList.remove('active');
@@ -80,46 +78,49 @@ resetButton.addEventListener('click', () => {
     tip = 0;
     peopleInput.value = '';
     people = 0;
-    totalAmount.innerText = "$0.00"
-    tipAmount.innerText = "$0.00"
+    cleanSplitter()
 
     billInput.classList.remove('error');
     billInput.classList.remove('active');
     errorMessageBill.style.display = 'none';
     billInput.style.outline = 'none';
-    customInput.classList.remove('error');
     customInput.classList.remove('active');
     customInput.style.outline = 'none';
     peopleInput.classList.remove('error');
     peopleInput.classList.remove('active');
     errorMessagePeople.style.display = 'none';
     peopleInput.style.outline = 'none';
-    
+
     tipButtons.forEach(btn => btn.classList.remove('selected'));
 
 });
 
 tipButtons.forEach(button => button.addEventListener('click', () => {
-    tip = parseInt(button.dataset.tip);
+    tip = button.dataset.tip;
     billSpliter(bill, tip, people);
     customInput.value = '';
     customInput.classList.remove('error');
     customInput.classList.remove('active');
     customInput.style.outline = 'none';
-    
+
     tipButtons.forEach(btn => btn.classList.remove('selected'));
     button.classList.add('selected');
-    
+
 }));
 
 function billSpliter(billValue, tipValue, peopleValue) {
-    if (billValue < 1 || tipValue < 1 || peopleValue < 1) {
-        totalAmount.innerText = "$0.00"
+    if (billValue >= 1 && tipValue > 0 && peopleValue >= 1) {
+        tipAmount.innerText = `$${((parseInt(tip) * parseInt(bill) / 100) / parseInt(people)).toFixed(2)}`
+        totalAmount.innerText = `$${(parseInt(bill) / parseInt(people) + (parseInt(tip) / parseInt(people))).toFixed(2)}`
+    } else if (billValue >= 1 && tipValue == 0 && peopleValue >= 1) {
         tipAmount.innerText = "$0.00"
+        totalAmount.innerText = `$${(parseInt(bill) / parseInt(people)).toFixed(2)}`
     } else {
-        console.log((bill / people) + tip)
-        tipAmount.innerText = `$${((tip * bill / 100) / people).toFixed(2)}`
-        totalAmount.innerText = `$${(bill / people + (tip / people)).toFixed(2)}`
-
+        cleanSplitter()
     }
+}
+
+function cleanSplitter() {
+    totalAmount.innerText = "$0.00"
+    tipAmount.innerText = "$0.00"
 }
