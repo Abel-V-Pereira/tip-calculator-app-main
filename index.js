@@ -39,7 +39,6 @@ customInput.addEventListener('input', (e) => {
     tipButtons.forEach(btn => btn.classList.remove('selected'));
 
     if (tip === '') {
-        cleanSplitter()
         customInput.classList.remove('active');
     } else if (tip >= 0) {
         customInput.classList.add('active');
@@ -112,7 +111,7 @@ function billSpliter(billValue, tipValue, peopleValue) {
     if (billValue >= 1 && tipValue > 0 && peopleValue >= 1) {
         tipAmount.innerText = `$${((parseInt(tip) * parseInt(bill) / 100) / parseInt(people)).toFixed(2)}`
         totalAmount.innerText = `$${(parseInt(bill) / parseInt(people) + (parseInt(tip) / parseInt(people))).toFixed(2)}`
-    } else if (billValue >= 1 && tipValue === 0 && peopleValue >= 1) {
+    } else if (billValue >= 1 && peopleValue >= 1) {
         tipAmount.innerText = "$0.00"
         totalAmount.innerText = `$${(parseInt(bill) / parseInt(people)).toFixed(2)}`
     } else {

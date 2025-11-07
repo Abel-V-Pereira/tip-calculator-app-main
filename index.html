@@ -17,9 +17,9 @@
 </head>
 
 <body>
-  <div class="title-div">
+  <header class="title-div">
     <h1 class="title">SPLI<br>TTER</h1>
-  </div>
+  </header>
   <main>
     <div class="bill-options">
       <div>
@@ -29,15 +29,15 @@
         </div>
         <input class="custom-value bill" type="number" name="bill" id="bill" placeholder="0">
       </div>
-      <div class="tip">
+      <div class="tip-div">
         <span>Select Tip %</span>
         <div class="tip-buttons">
-          <input class="fixed-value" type="button" value="5%" data-tip="5">
-          <input class="fixed-value" type="button" value="10%" data-tip="10">
-          <input class="fixed-value" type="button" value="15%" data-tip="15">
-          <input class="fixed-value" type="button" value="25%" data-tip="25">
-          <input class="fixed-value" type="button" value="50%" data-tip="50">
-          <input class="custom-value" type="number" name="custom" id="custom" placeholder="Custom">
+          <button class="fixed-value tip" type="button" data-tip="5">5%</button>
+          <button class="fixed-value tip" type="button" data-tip="10">10%</button>
+          <button class="fixed-value tip" type="button" data-tip="15">15%</button>
+          <button class="fixed-value tip" type="button" data-tip="25">25%</button>
+          <button class="fixed-value tip" type="button" data-tip="50">50%</button>
+          <input class="custom-value tip" type="number" name="custom" id="custom" placeholder="Custom">
         </div>
       </div>
       <div>
@@ -66,7 +66,7 @@
           <span id="total-amount">$0.00</span>
         </div>
       </div>
-      <input class="reset-button" type="button" value="RESET">
+      <button class="reset-button" type="button">RESET</button>
     </div>
   </main>
 
